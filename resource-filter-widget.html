@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enablement Resource Finder</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style>
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background-color: #ffffff;
+      color: #0b66c2;
+      padding: 20px;
+    }
+
+    .filter-widget {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 2px solid #0b66c2;
+    }
+
+    .filter-widget h2 {
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #004184;
+    }
+
+    .filter-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    select, .filters label, .clear-button {
+      font-family: 'Nunito Sans', sans-serif;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 2px solid #0b66c2;
+      background-color: white;
+      color: #0b66c2;
+      cursor: pointer;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filters input[type="checkbox"] {
+      display: none;
+    }
+
+    .filters input[type="checkbox"]:checked + label {
+      background-color: #0b66c2;
+      color: white;
+    }
+
+    .resource-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .resource-item {
+      width: 180px;
+      height: 180px;
+      box-sizing: border-box;
+
+      
+      border: 1px solid #0b66c2;
+      border-radius: 10px;
+      padding: 16px;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .resource-item h3 {
+      margin: 0 0 10px;
+      color: #004184;
+      font-size: 1.2em;
+    }
+
+    .resource-item .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .resource-item .tags span {
+      background-color: #0b66c2;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 0.85em;
+    }
+
+    .resource-item a {
+      text-align: center;
+      background: #0b66c2;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .material-icons {
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+  
+    @media (max-width: 1024px) {
+      .resource-item {
+        width: calc(48% - 20px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .resource-item {
+        width: 100%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+<div class="filter-widget">
+<h2>Find Enablement Resources</h2>
+<div class="filter-controls">
+<select id="segment">
+<option value="">Select Segment</option>
+<option>SMB</option>
+<option>MM</option>
+<option>ENT</option>
+<option>LENT</option>
+<option>GCP</option>
+</select>
+<select id="region">
+<option value="">Select Region</option>
+<option>NAMER</option>
+<option>EMEAL</option>
+<option>LATAM</option>
+</select>
+<select id="kcm">
+<option value="">Select KCM</option>
+<option>Commercial Milestones</option>
+<option>Value Review</option>
+<option>Executive Engagements</option>
+<option>Kickoff and Alignment</option>
+</select>
+<div class="filters">
+<input id="templates" type="checkbox"/><label for="templates"><span class="material-icons">sticky_note_2</span>Templates</label>
+<input id="learning" type="checkbox"/><label for="learning"><span class="material-icons">school</span>Learning Paths</label>
+<input id="wins" type="checkbox"/><label for="wins"><span class="material-icons">verified</span>Rep Wins</label>
+<input id="navigator" type="checkbox"/><label for="navigator"><span class="material-icons">pageview</span>Sales Navigator</label>
+<button class="clear-button" onclick="clearFilters()">Clear</button>
+</div>
+</div>
+<div id="resultCount" style="margin-bottom: 12px; font-weight: bold; color: #004184;"></div>
+<div class="resource-results">
+<!-- Sample Resource -->
+<div class="resource-item">
+<h3>FY26 Planning Template</h3>
+
+<a href="https://linkedin.com" target="_blank">View Resource</a>
+</div>
+<div class="resource-item">
+<h3>Enterprise Learning Path</h3>
+
+<a href="https://linkedin.com" target="_blank">View Resource</a>
+</div>
+<div class="resource-item">
+<h3>Q1 Rep Win Stories</h3>
+
+<a href="https://linkedin.com" target="_blank">View Resource</a>
+</div>
+<div class="resource-item">
+<h3>Sales Navigator Quick Guide</h3>
+
+<a href="https://linkedin.com" target="_blank">View Resource</a>
+</div>
+<div class="resource-item">
+<h3>FY26 Planning Template</h3>
+
+<a href="#" target="_blank">View Resource</a>
+</div>
+</div>
+</div>
+<script>
+  function updateResultCount() {
+    const visibleResources = document.querySelectorAll('.resource-item');
+    document.getElementById('resultCount').innerText = `${visibleResources.length} Results Found`;
+  }
+  window.onload = updateResultCount;
+</script>
+</body>
+</html>
